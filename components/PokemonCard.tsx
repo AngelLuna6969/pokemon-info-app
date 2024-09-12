@@ -1,6 +1,5 @@
 import { Avatar, Button, Text } from 'react-native-paper'
 
-
 interface pokeProp {
     id: number,
     name: string,
@@ -12,12 +11,17 @@ const PokemonCard = ({ id, name, sprites }: pokeProp) => {
         <>
             <Text variant="displayMedium">
                 {id} - {name}
-            </Text>
-            <Avatar.Image size={100} source={{ uri: front }} />
+            </Text>{
+                sprites.map((sprite: string, index: any) => {
+                    return (
+                        <Avatar.Image size={100} source={{ uri: sprite }} />
+                    )
+                })
+            }
         </>
     )
 }
 
 export default PokemonCard
 
-const styles = StyleSheet.create({})
+// const styles = StyleSheet.create({})
