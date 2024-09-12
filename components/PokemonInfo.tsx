@@ -30,10 +30,10 @@ export const PokemonInfo = () => {
     return (
         <View style={{ flex: 1, justifyContent:"center", alignItems:"center"}}>
             <Text>PokemonInfo</Text>
-            <Text variant="displayMedium">
+            {/* <Text variant="displayMedium">
                 {ide} - {name}
             </Text>
-            <Avatar.Image size={100} source={{uri:front}}/>
+            <Avatar.Image size={100} source={{uri:front}}/> */}
             <View style={{ flexDirection: 'row-reverse' }}>
                 <Button icon="camera" mode='contained-tonal' onPress={() => increment()}>
                     Siguiente
