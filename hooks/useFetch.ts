@@ -1,5 +1,7 @@
+import { resolveParentId } from "expo-router/build/useNavigation";
 import { useEffect, useState } from "react"
 
+const localCache: Array<String> = [];
 
 export const useFetch = (url: string) => {
 
@@ -25,8 +27,21 @@ export const useFetch = (url: string) => {
 
 
     const getFecth = async () => {
+
+        if (localCache[url]) {
+            setState({
+                data: localCache[url],
+                isLoading: false,
+                hasError: false,
+                error: null
+            });
+            return;
+        }
+
         setLoadingState();
         const response = await fetch(url);
+
+        await new Promise(resolve => setTimeout(resolve, 500))
 
         if (!response.ok) {
             setState({
@@ -46,7 +61,10 @@ export const useFetch = (url: string) => {
             isLoading: false,
             hasError: false,
             error: null
-        })
+        });
+
+        localCache[url] = data;
+
     }
 
     return {

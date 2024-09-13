@@ -1,4 +1,4 @@
-import { View } from 'react-native'
+import { ImageBackground, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Avatar, Button, Text } from 'react-native-paper'
 import { useCounter } from '@/hooks/useCounter';
@@ -30,36 +30,61 @@ export const PokemonInfo = () => {
     // }, [counter]);
 
     return (
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+
+        <ImageBackground
+            style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center"
+            }}
+            source={{
+                require: './assets/images/fondo.jpg'
+            }}
+        >
             {/* <Text variant="displayMedium">
                 {ide} - {name}
             </Text>
             <Avatar.Image size={100} source={{uri:front}}/> */}
             {
                 isLoading
-                ?
-                <PokemonMessage/>
-                :
-                <PokemonCard
-                    id={data?.id}
-                    name={data?.name}
-                    sprites={[
-                        data?.sprites.back_default,
-                        data?.sprites.front_default,
-                        data?.sprites.back_shiny,
-                        data?.sprites.front_shiny
-                    ]}
-                />
+                    ?
+                    <PokemonMessage />
+                    :
+                    <PokemonCard
+                        id={data?.id}
+                        name={data?.name}
+                        sprites={[
+                            data?.sprites.back_default,
+                            data?.sprites.front_default,
+                            data?.sprites.back_shiny,
+                            data?.sprites.front_shiny
+                        ]}
+                    />
             }
-            <View style={{ flexDirection: 'row-reverse' }}>
-                <Button icon="camera" mode='contained-tonal' onPress={() => increment()}>
+            <View
+                style={{
+                    flexDirection: 'row-reverse',
+                    width: "100%",
+                    justifyContent: 'space-evenly',
+                    marginVertical: 15
+                }}>
+                <Button icon="arrowright" mode='contained-tonal' onPress={() => increment()}
+                    style={{
+                        backgroundColor: "green"
+                    }}
+                    contentStyle={{
+                        flexDirection: 'row-reverse'
+                    }}
+                >
                     Siguiente
                 </Button>
-                <Button icon="camera" mode='contained-tonal' onPress={() => decrement()}>
+                <Button icon="arrowleft" mode='contained-tonal' onPress={() => decrement()} style={{
+                    backgroundColor: "red"
+                }}>
                     Anterior
                 </Button>
             </View>
-        </View>
+        </ImageBackground>
     )
 }
 
