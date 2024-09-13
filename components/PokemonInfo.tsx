@@ -4,6 +4,7 @@ import { Avatar, Button, Text } from 'react-native-paper'
 import { useCounter } from '@/hooks/useCounter';
 import { useFetch } from '@/hooks/useFetch';
 import PokemonCard from './PokemonCard';
+import PokemonMessage from './PokemonMessage';
 
 export const PokemonInfo = () => {
 
@@ -34,14 +35,15 @@ export const PokemonInfo = () => {
                 {ide} - {name}
             </Text>
             <Avatar.Image size={100} source={{uri:front}}/> */}
+            <PokemonMessage/>
             <PokemonCard
-                id={data.id}
-                name={data.name}
+                id={data?.id}
+                name={data?.name}
                 sprites={[
-                    data.sprites.back_default,
-                    data.sprites.front_default,
-                    data.sprites.back_shiny,
-                    data.sprites.front_shiny
+                    data?.sprites.back_default,
+                    data?.sprites.front_default,
+                    data?.sprites.back_shiny,
+                    data?.sprites.front_shiny
                 ]}
             />
             <View style={{ flexDirection: 'row-reverse' }}>
