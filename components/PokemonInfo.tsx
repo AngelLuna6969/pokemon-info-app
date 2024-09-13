@@ -35,17 +35,22 @@ export const PokemonInfo = () => {
                 {ide} - {name}
             </Text>
             <Avatar.Image size={100} source={{uri:front}}/> */}
-            <PokemonMessage/>
-            <PokemonCard
-                id={data?.id}
-                name={data?.name}
-                sprites={[
-                    data?.sprites.back_default,
-                    data?.sprites.front_default,
-                    data?.sprites.back_shiny,
-                    data?.sprites.front_shiny
-                ]}
-            />
+            {
+                isLoading
+                ?
+                <PokemonMessage/>
+                :
+                <PokemonCard
+                    id={data?.id}
+                    name={data?.name}
+                    sprites={[
+                        data?.sprites.back_default,
+                        data?.sprites.front_default,
+                        data?.sprites.back_shiny,
+                        data?.sprites.front_shiny
+                    ]}
+                />
+            }
             <View style={{ flexDirection: 'row-reverse' }}>
                 <Button icon="camera" mode='contained-tonal' onPress={() => increment()}>
                     Siguiente
